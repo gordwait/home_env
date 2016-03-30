@@ -74,24 +74,6 @@ alias union="ssh gwait@172.22.196.13"
 alias mrbean="ssh gwait@mrbean"
 alias spanish="rlogin 172.22.196.39"
 
-FPGAURL="https://192.168.2.20/svn/lsengineering/trunk/hardware/fpga/projects"
-SVNURL="https://home.yvr.lighthauslogic.com/svn/firmware/projects/extremecard_fpga"
-
-if [ -e ~/altera/15.0/quartus/bin ] ; then
-    PATH=~/altera/15.0/quartus/bin:${PATH}
-fi
-export PATH
-
-if [ -e ~/altera/15.0/modelsim_ase/bin ] ; then
-    PATH=~/altera/15.0/modelsim_ase/bin:${PATH}
-fi
-export PATH
-
-if [ -e /usr/local/DS-5/bin ] ; then
-    PATH=/usr/local/DS-5/bin:${PATH}
-fi
-export PATH
-
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
 
@@ -169,19 +151,13 @@ runemacs c:/home/gwait/docs/reference.txt
 #     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
 # fi
 
-# Altera 15.0
-#export QUARTUS_ROOTDIR=/home/gwait/altera/15.0/quartus
-#source $QUARTUS_ROOTDIR/adm/qenv.sh
-#export QSYS_ROOTDIR="/home/gwait/altera/15.0/quartus/sopc_builder/bin"
-#export ALTERAOCLSDKROOT="/home/gwait/altera/15.0/hld"
-
 # Altera 15.1
-export QUARTUS_ROOTDIR=/opt/altera/altera_lite/15.1/quartus
+export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
 source $QUARTUS_ROOTDIR/adm/qenv.sh
-export QSYS_ROOTDIR="/opt/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-export ALTERAOCLSDKROOT="/opt/altera/altera_lite/15.1/hld"
-# bug fix for Quartus on Ubuntu?
-export CURLOPT_NOSIGNAL=1
+export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+# bug fix for Quartus on Ubuntu? Nope.
+# export CURLOPT_NOSIGNAL=1
 
 # Debussy (Novas) stufff
 export LM_LICENSE_FILE=/tools/licenses/lic.debussy
@@ -201,14 +177,30 @@ alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86
 export PATH=$CADENCE/tools.lnx86/bin:$PATH
 export PATH=$DEBUSSYDIR/bin:$PATH
 
-#alias xme="export DISPLAY=172.22.196.148:0.0"
+# older tools: 13.xx
+# Altera:
+#export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
+#source /opt/Altera/QuartusII/quartus/adm/qenv.sh
+# to build encrypted file on spanish
+#export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
+#PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
+#export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
+
+export OFFICE_SEL=VDC
+# track glitches in NC Verilog
+export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
+
+export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+
+# Local xwindow stuff
+# alias xme="export DISPLAY=172.22.196.148:0.0"
 # 101 is my windows desktop via hummingbird.
-alias xme="export DISPLAY=172.22.196.101:0.0"
-#alias xme="export DISPLAY=mrbean:0.0"
+# alias xme="export DISPLAY=172.22.196.101:0.0"
+alias xme="export DISPLAY=mrbean:0.0"
+alias xvdc-nelson="export DISPLAY=172.22.196.101:0.0"
 
 xhost +union
 xhost +spanish
 xhost +long
-export OFFICE_SEL=VDC
-# track glitches in NC Verilog
-export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
