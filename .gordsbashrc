@@ -9,7 +9,7 @@ if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
 	PATH=/emacs/bin:${PATH}
     fi
 
-    alias e=em
+    alias e=runemacs
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
