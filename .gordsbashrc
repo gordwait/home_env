@@ -1,0 +1,214 @@
+# base-files version 3.7-1
+
+echo "hi from .gordsbashrc"
+
+# To pick up the latest recommended .bash_profile content,
+# look in /etc/defaults/etc/skel/.bash_profile
+
+# Modifying /etc/skel/.bash_profile directly will prevent
+# setup from updating it.
+
+# The copy in your home directory (~/.bash_profile) is yours, please
+# feel free to customise it to create a shell
+# environment to your liking.  If you feel a change
+# would be benifitial to all, please feel free to send
+# a patch to the cygwin mailing list.
+
+# ~/.bash_profile: executed by bash for login shells.
+
+# New world order?
+#if [ -f ~/.bashrc ]; then
+#    .  ~/.bashrc
+#fi
+
+# source the system wide bashrc if it exists
+#if [ -e /etc/bash.bashrc ] ; then
+#  source /etc/bash.bashrc
+#fi
+
+# source the users bashrc if it exists
+#if [ -e "${HOME}/.bashrc" ] ; then
+#  source "${HOME}/.bashrc"
+#fi
+
+# Set PATH so it includes user's private bin if it exists
+# if [ -d "${HOME}/bin" ] ; then
+#   PATH=${HOME}/bin:${PATH}
+# fi
+
+# Set MANPATH so it includes users' private man if it exists
+# if [ -d "${HOME}/man" ]; then
+#   MANPATH=${HOME}/man:${MANPATH}
+# fi
+
+# Set INFOPATH so it includes users' private info if it exists
+# if [ -d "${HOME}/info" ]; then
+#   INFOPATH=${HOME}/info:${INFOPATH}
+# fi
+
+
+source ~/.persistent_variables
+
+case $MACHTYPE in
+i686-pc-cygwin)
+function e() { 
+/emacs/bin/runemacs "$@" &
+ }
+ export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+;;
+*)
+function e() { 
+/usr/bin/emacs "$@" &
+ }
+# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+ export ALTERNATE_EDITOR=emacs EDITOR=emacs VISUAL=emacs
+;;
+esac
+
+alias nios="/cygdrive/c/altera/10.1/nios2eds/Nios\ II\ Command\ Shell.bat"
+
+alias h=history
+alias OK="source ~/.gordsbashrc"
+alias docs="cd ~/docs"
+alias union="ssh gwait@172.22.196.13"
+alias mrbean="ssh gwait@mrbean"
+alias spanish="rlogin 172.22.196.39"
+
+FPGAURL="https://192.168.2.20/svn/lsengineering/trunk/hardware/fpga/projects"
+SVNURL="https://home.yvr.lighthauslogic.com/svn/firmware/projects/extremecard_fpga"
+
+if [ -e ~/altera/15.0/quartus/bin ] ; then
+    PATH=~/altera/15.0/quartus/bin:${PATH}
+fi
+export PATH
+
+if [ -e ~/altera/15.0/modelsim_ase/bin ] ; then
+    PATH=~/altera/15.0/modelsim_ase/bin:${PATH}
+fi
+export PATH
+
+if [ -e /usr/local/DS-5/bin ] ; then
+    PATH=/usr/local/DS-5/bin:${PATH}
+fi
+export PATH
+
+alias work='cd $WORKDIR'
+alias src='cd $SRCDIR'
+
+setworkdir(){
+    export WORKDIR=$PWD
+    save_my_variables
+}
+
+setsrcdir(){
+    export SRCDIR=$PWD
+    save_my_variables
+}
+
+# saves away the variables to a start script for persistence:
+# deletes and creates a new copy every time:
+
+save_my_variables() {
+echo "export WORKDIR=$WORKDIR" > ~/.persistent_variables
+echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
+echo "export V4DIR=$V4DIR" >> ~/.persistent_variables
+echo "export V5DIR=$V5DIR" >> ~/.persistent_variables
+echo "export S4DIR=$S4DIR" >> ~/.persistent_variables
+}
+
+export PQ3DIR=gwait@pcietest:/opt/lhl-linux/pq3/export_rootfs0/home/gwait/scripts
+
+export LS_OPTIONS="-F"
+
+lst(){
+   ls -altF $* | head -n 35
+}
+
+ncs() {
+"c:/altera/91/nios2eds/Nios II Command Shell.bat"
+}
+
+ttd(){
+runemacs c:/home/gwait/docs/NextActions.txt
+}
+
+inbox(){
+runemacs c:/home/gwait/docs/inbox.txt
+}
+
+proj(){
+runemacs c:/home/gwait/docs/projects.txt
+}
+
+next(){
+runemacs c:/home/gwait/docs/NextActions.txt
+}
+
+someday(){
+runemacs c:/home/gwait/docs/SomedayMaybe.txt
+}
+
+ref(){
+runemacs c:/home/gwait/docs/reference.txt
+}
+
+
+# XIL_PAR_DESIGN_CHECK_VERBOSE=3
+
+# working PCIe master: (use this normally)
+# if [ -e /opt/Xilinx/Vivado/2013.3/settings64.sh ] ; then
+#    source /opt/Xilinx/Vivado/2013.3/settings64.sh
+# fi
+
+# new tools. lets see..
+# if [ -e /opt/Xilinx/Vivado/2014.4/settings64.sh ] ; then
+#    source /opt/Xilinx/Vivado/2014.4/settings64.sh
+# fi
+
+# if [ -e /opt/Xilinx/14.7/ISE_DS/settings64.sh ] ; then
+#     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
+# fi
+
+# Altera 15.0
+#export QUARTUS_ROOTDIR=/home/gwait/altera/15.0/quartus
+#source $QUARTUS_ROOTDIR/adm/qenv.sh
+#export QSYS_ROOTDIR="/home/gwait/altera/15.0/quartus/sopc_builder/bin"
+#export ALTERAOCLSDKROOT="/home/gwait/altera/15.0/hld"
+
+# Altera 15.1
+export QUARTUS_ROOTDIR=/opt/altera/altera_lite/15.1/quartus
+source $QUARTUS_ROOTDIR/adm/qenv.sh
+export QSYS_ROOTDIR="/opt/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+export ALTERAOCLSDKROOT="/opt/altera/altera_lite/15.1/hld"
+# bug fix for Quartus on Ubuntu?
+export CURLOPT_NOSIGNAL=1
+
+# Debussy (Novas) stufff
+export LM_LICENSE_FILE=/tools/licenses/lic.debussy
+export DEBUSSYDIR=/tools/debussy200807
+
+# Cadence stuff
+export NC
+export CADENCE=/tools/cadenceINCISIV102_USR2
+export CDS_LIC_FILE=/tools/licenses/lic.cadence
+export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
+export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+
+alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+
+export PATH=$CADENCE/tools.lnx86/bin:$PATH
+export PATH=$DEBUSSYDIR/bin:$PATH
+
+#alias xme="export DISPLAY=172.22.196.148:0.0"
+# 101 is my windows desktop via hummingbird.
+alias xme="export DISPLAY=172.22.196.101:0.0"
+#alias xme="export DISPLAY=mrbean:0.0"
+
+xhost +union
+xhost +spanish
+xhost +long
+export OFFICE_SEL=VDC
+# track glitches in NC Verilog
+export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
