@@ -44,25 +44,31 @@
  (setq load-path (append load-path (list (expand-file-name my-path))))) 
 ;; Look first in the directory ~/elisp for elisp files 
  (prepend-path "~/elisp") 
+
 ;; Load verilog mode only when needed 
+
  (autoload 'verilog-mode "verilog-mode" "Verilog mode" t ) 
 ;; Any files that end in .v should be in verilog mode 
-(setq auto-mode-alist (cons '("\\.v\\'" . verilog-mode) auto-mode-alist))
-;; Any files in verilog mode should have their keywords colorized 
-(add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
-
 (setq auto-mode-alist (cons  '("\\.v\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.vc\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.iv\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.dv\\'" . verilog-mode) auto-mode-alist))
- 
+(setq auto-mode-alist (cons  '("\\.vh\\'" . verilog-mode) auto-mode-alist))
+
+;; Any files in verilog mode should have their keywords colorized 
+(add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
+
+;;(add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(case-fold-search t)
  '(current-language-environment "Latin-1")
+ '(custom-enabled-themes (quote (tango)))
  '(default-input-method "latin-1-prefix")
  '(global-font-lock-mode t nil (font-lock))
  '(line-move-visual nil)
@@ -136,6 +142,19 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+
+;; printer games
+(defconst PRINTER_NAME "for_emacs"
+  "printer to use within emacs")
+(defconst MY_PRINTER (concat "//" (getenv "COMPUTERNAME") "/" PRINTER_NAME)
+  "Point to the printer emacs is to use. Defaults to `MY_PRINTER`")
+(defconst MY_PS_PRINTER MY_PRINTER
+  "Point to the ps printer emacs is to use. Defaults to `MY_PRINTER`")
+(setq printer-name MY_PRINTER)
+(setq-default ps-printer-name t)
+(setq-default ps-printer-name-option nil)
+(setq ps-lpr-switches '("-query")) ; show printer dialog
+
 (require 'tramp)
 
 (require 'server)
@@ -143,3 +162,10 @@
 (server-start))
 
 (put 'downcase-region 'disabled nil)
+(add-to-list 'exec-path "C:/Program Files (x86)/Aspell/bin/")
+
+(setq-default ispell-program-name "aspell")
+(setq ispell-program-name "aspell")
+(setq ispell-personal-dictionary "C:/Users/gwait/.ispell")
+(require `ispell)
+

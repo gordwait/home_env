@@ -1,6 +1,133 @@
+#!/usr/bin/env bash
+echo "hi from .gordsbashrc"
+
+################################################################################
+if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
+    echo "Cygin flavour"
+    # pick up windows emacs
+    if [ -d "/emacs/bin" ] ; then
+	PATH=/emacs/bin:${PATH}
+    fi
+
+    alias e=em
+    export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+
+    inbox(){
+	runemacs c:/Users/gwait/Documents/inbox.txt
+    }
+
+    proj(){
+	runemacs c:/Users/gwait/Documents/projects.txt
+    }
+
+    next(){
+	runemacs c:/Users/gwait/Documents/NextActions.txt
+    }
+
+    someday(){
+	runemacs c:/Users/gwait/Documents/SomedayMaybe.txt
+    }
+
+    ref(){
+	runemacs c:/Users/gwait/Documents/reference.txt
+    }
+
+    ttd(){
+	runemacs c:/Users/gwait/Documents/NextActions.txt
+    }
+
+    ncs() {
+	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
+    }
+
+################################################################################
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    # Do something under GNU/Linux platform
+    echo "Linux flavour"
+
+    alias e=emacs
+
+    inbox(){
+	e ~/Documents/inbox.txt
+    }
+
+    proj(){
+	e ~/Documents/projects.txt
+    }
+
+    next(){
+	e ~/Documents/NextActions.txt
+    }
+
+    someday(){
+	e ~/Documents/SomedayMaybe.txt
+    }
+
+    ref(){
+	e ~/Documents/reference.txt
+    }
+
+    ttd(){
+	e ~/Documents/NextActions.txt
+    }
+    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    source $QUARTUS_ROOTDIR/adm/qenv.sh
+    export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    # bug fix for Quartus on Ubuntu? Nope.
+    # export CURLOPT_NOSIGNAL=1
+
+    # Debussy (Novas) stufff
+    export LM_LICENSE_FILE=/tools/licenses/lic.debussy
+    export DEBUSSYDIR=/tools/debussy200807
+
+    # Cadence stuff
+    export NC
+    export CADENCE=/tools/cadenceINCISIV102_USR2
+    export CDS_LIC_FILE=/tools/licenses/lic.cadence
+    export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
+    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+
+    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+
+    export PATH=$CADENCE/tools.lnx86/bin:$PATH
+    export PATH=$DEBUSSYDIR/bin:$PATH
+
+    # older tools: 13.xx
+    # Altera:
+    #export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
+    #source /opt/Altera/QuartusII/quartus/adm/qenv.sh
+    # to build encrypted file on spanish
+    #export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
+    #PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
+    #export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
+
+    export OFFICE_SEL=VDC
+    # track glitches in NC Verilog
+    export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
+
+    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+
+    # Local xwindow stuff
+    # alias xme="export DISPLAY=172.22.196.148:0.0"
+    # 101 is my windows desktop via hummingbird.
+    # alias xme="export DISPLAY=172.22.196.101:0.0"
+    alias xme="export DISPLAY=mrbean:0.0"
+    alias xvdc-nelson="export DISPLAY=172.22.196.101:0.0"
+
+    xhost +union
+    xhost +spanish
+    xhost +long
+
+fi
+
 # base-files version 3.7-1
 
-echo "hi from .gordsbashrc"
+source ~/.persistent_variables
 
 # To pick up the latest recommended .bash_profile content,
 # look in /etc/defaults/etc/skel/.bash_profile
@@ -50,29 +177,32 @@ echo "hi from .gordsbashrc"
 source ~/.persistent_variables
 
 case $MACHTYPE in
-i686-pc-cygwin)
-function e() { 
-/emacs/bin/runemacs "$@" &
- }
- export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
-;;
-*)
-function e() { 
-/usr/bin/emacs "$@" &
- }
-# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
- export ALTERNATE_EDITOR=emacs EDITOR=emacs VISUAL=emacs
-;;
+    i686-pc-cygwin)
+	function e() { 
+	    /emacs/bin/runemacs "$@" &
+	}
+	export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+	;;
+    *)
+	function e() { 
+	    /usr/bin/emacs "$@" &
+	}
+	# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+	export ALTERNATE_EDITOR=emacs EDITOR=emacs VISUAL=emacs
+	;;
 esac
 
 alias nios="/cygdrive/c/altera/10.1/nios2eds/Nios\ II\ Command\ Shell.bat"
 
 alias h=history
 alias OK="source ~/.gordsbashrc"
-alias docs="cd ~/docs"
+alias docs="cd ~/Documents"
+
 alias union="ssh gwait@172.22.196.13"
 alias mrbean="ssh gwait@mrbean"
 alias spanish="rlogin 172.22.196.39"
+alias long="ssh gwait@long"
+alias cypress="ssh gwait@cypress"
 
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
@@ -91,50 +221,29 @@ setsrcdir(){
 # deletes and creates a new copy every time:
 
 save_my_variables() {
-echo "export WORKDIR=$WORKDIR" > ~/.persistent_variables
-echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
-echo "export V4DIR=$V4DIR" >> ~/.persistent_variables
-echo "export V5DIR=$V5DIR" >> ~/.persistent_variables
-echo "export S4DIR=$S4DIR" >> ~/.persistent_variables
+    echo "export WORKDIR=$WORKDIR" > ~/.persistent_variables
+    echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
+    echo "export V4DIR=$V4DIR" >> ~/.persistent_variables
+    echo "export V5DIR=$V5DIR" >> ~/.persistent_variables
+    echo "export S4DIR=$S4DIR" >> ~/.persistent_variables
 }
-
-export PQ3DIR=gwait@pcietest:/opt/lhl-linux/pq3/export_rootfs0/home/gwait/scripts
 
 export LS_OPTIONS="-F"
 
 lst(){
-   ls -altF $* | head -n 35
-}
-
-ncs() {
-"c:/altera/91/nios2eds/Nios II Command Shell.bat"
-}
-
-ttd(){
-runemacs c:/home/gwait/docs/NextActions.txt
-}
-
-inbox(){
-runemacs c:/home/gwait/docs/inbox.txt
-}
-
-proj(){
-runemacs c:/home/gwait/docs/projects.txt
-}
-
-next(){
-runemacs c:/home/gwait/docs/NextActions.txt
-}
-
-someday(){
-runemacs c:/home/gwait/docs/SomedayMaybe.txt
-}
-
-ref(){
-runemacs c:/home/gwait/docs/reference.txt
+    ls -altF $* | head -n 35
 }
 
 
+# New Xilinx tools on Win7 Epson:
+
+# 
+# if [ -d "${HOME}/bin" ] ; then
+#   PATH=${HOME}/bin:${PATH}
+# fi
+# VIVADO_LOC=/Xilinx/Vivado/2013.3
+# VIVADO_HLS_LOC=/Xilinx/Vivado_HLS/2013.3
+# PATH=$VIVADO_LOC/bin:$VIVADO_LOC/.xinstall/bin/nt64:$VIVADO_LOC/ids_lite/ISElib2/nt64:$VIVADO_LOC/ids_lite/EDK/gnuwin/bin:$VIVADO_HLS_LOC/bin:${PATH}
 # XIL_PAR_DESIGN_CHECK_VERBOSE=3
 
 # working PCIe master: (use this normally)
@@ -151,56 +260,3 @@ runemacs c:/home/gwait/docs/reference.txt
 #     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
 # fi
 
-# Altera 15.1
-export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-source $QUARTUS_ROOTDIR/adm/qenv.sh
-export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-# bug fix for Quartus on Ubuntu? Nope.
-# export CURLOPT_NOSIGNAL=1
-
-# Debussy (Novas) stufff
-export LM_LICENSE_FILE=/tools/licenses/lic.debussy
-export DEBUSSYDIR=/tools/debussy200807
-
-# Cadence stuff
-export NC
-export CADENCE=/tools/cadenceINCISIV102_USR2
-export CDS_LIC_FILE=/tools/licenses/lic.cadence
-export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
-export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
-export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-
-alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
-
-export PATH=$CADENCE/tools.lnx86/bin:$PATH
-export PATH=$DEBUSSYDIR/bin:$PATH
-
-# older tools: 13.xx
-# Altera:
-#export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
-#source /opt/Altera/QuartusII/quartus/adm/qenv.sh
-# to build encrypted file on spanish
-#export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
-#PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
-#export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
-
-export OFFICE_SEL=VDC
-# track glitches in NC Verilog
-export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
-
-export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
-
-# Local xwindow stuff
-# alias xme="export DISPLAY=172.22.196.148:0.0"
-# 101 is my windows desktop via hummingbird.
-# alias xme="export DISPLAY=172.22.196.101:0.0"
-alias xme="export DISPLAY=mrbean:0.0"
-alias xvdc-nelson="export DISPLAY=172.22.196.101:0.0"
-
-xhost +union
-xhost +spanish
-xhost +long
