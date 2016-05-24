@@ -201,7 +201,7 @@ alias docs="cd ~/Documents"
 
 alias union="ssh gwait@172.22.196.13"
 alias mrbean="ssh gwait@mrbean"
-alias spanish="rlogin 172.22.196.39"
+alias spanish="ssh gwait@172.22.196.39"
 alias long="ssh gwait@long"
 alias cypress="ssh gwait@cypress"
 
