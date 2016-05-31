@@ -55,6 +55,7 @@
 (setq auto-mode-alist (cons  '("\\.iv\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.dv\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.vh\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist (cons  '("\\.vpart\\'" . verilog-mode) auto-mode-alist))
 
 ;; Any files in verilog mode should have their keywords colorized 
 (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
