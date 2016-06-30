@@ -70,13 +70,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ttd(){
 	e ~/Documents/NextActions.txt
     }
-    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    source $QUARTUS_ROOTDIR/adm/qenv.sh
-    export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-    # bug fix for Quartus on Ubuntu? Nope.
-    # export CURLOPT_NOSIGNAL=1
-
     # Debussy (Novas) stufff
     export LM_LICENSE_FILE=/tools/licenses/lic.debussy
     export DEBUSSYDIR=/tools/debussy200807
@@ -110,7 +103,14 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
     export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
     export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+#    export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    # bug fix for Quartus on Ubuntu? Nope.
+    # export CURLOPT_NOSIGNAL=1
+
+# temporarily stop this so I can install stuff.
+#    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+#    source $QUARTUS_ROOTDIR/adm/qenv.sh
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
@@ -260,3 +260,5 @@ lst(){
 #     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
 # fi
 
+# x11 remote noise about dbus errors. Shut up please:
+export NO_AT_BRIDGE=1
