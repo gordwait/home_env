@@ -78,7 +78,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # export CURLOPT_NOSIGNAL=1
 
     # Debussy (Novas) stufff
-    export LM_LICENSE_FILE=/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
+    export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
     
     export DEBUSSYDIR=/tools/debussy200807
 
@@ -199,11 +199,11 @@ alias h=history
 alias OK="source ~/.gordsbashrc"
 alias docs="cd ~/Documents"
 
-alias union="ssh gwait@172.22.196.13"
-alias mrbean="ssh gwait@mrbean"
-alias spanish="ssh gwait@172.22.196.39"
-alias long="ssh gwait@long"
-alias cypress="ssh gwait@cypress"
+alias union="ssh gwait@172.22.196.13 -Y"
+alias mrbean="ssh gwait@mrbean -Y"
+alias spanish="ssh gwait@172.22.196.39 -Y"
+alias long="ssh gwait@long -Y"
+alias cypress="ssh gwait@cypress -Y"
 
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
@@ -261,3 +261,5 @@ lst(){
 #     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
 # fi
 
+# bug fix for Quartus on Ubuntu? Nope.
+export CURLOPT_NOSIGNAL=1
