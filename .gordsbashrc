@@ -9,7 +9,7 @@ if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
 	PATH=/emacs/bin:${PATH}
     fi
 
-    alias e=runemacs
+#    alias e=runemacs
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
@@ -45,7 +45,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
     echo "Linux flavour"
 
-    alias e=emacs
+#    alias e=emacs
 
     inbox(){
 	e ~/Documents/inbox.txt
@@ -70,8 +70,17 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     ttd(){
 	e ~/Documents/NextActions.txt
     }
+
+    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    # source $QUARTUS_ROOTDIR/adm/qenv.sh
+    # export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+    # export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    # bug fix for Quartus on Ubuntu? Nope.
+    # export CURLOPT_NOSIGNAL=1
+
     # Debussy (Novas) stufff
-    export LM_LICENSE_FILE=/tools/licenses/lic.debussy
+    export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
+    
     export DEBUSSYDIR=/tools/debussy200807
 
     # Cadence stuff
@@ -101,6 +110,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # track glitches in NC Verilog
     export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
 
+
     export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
     export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
 #    export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
@@ -111,6 +121,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 # temporarily stop this so I can install stuff.
 #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
 #    source $QUARTUS_ROOTDIR/adm/qenv.sh
+
+    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    # export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+    # source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
@@ -198,11 +212,11 @@ alias h=history
 alias OK="source ~/.gordsbashrc"
 alias docs="cd ~/Documents"
 
-alias union="ssh gwait@172.22.196.13"
-alias mrbean="ssh gwait@mrbean"
-alias spanish="rlogin 172.22.196.39"
-alias long="ssh gwait@long"
-alias cypress="ssh gwait@cypress"
+alias union="ssh gwait@172.22.196.13 -Y"
+alias mrbean="ssh gwait@mrbean -Y"
+alias spanish="ssh gwait@172.22.196.39 -Y"
+alias long="ssh gwait@long -Y"
+alias cypress="ssh gwait@cypress -Y"
 
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
@@ -262,3 +276,6 @@ lst(){
 
 # x11 remote noise about dbus errors. Shut up please:
 export NO_AT_BRIDGE=1
+
+# bug fix for Quartus on Ubuntu? Nope.
+export CURLOPT_NOSIGNAL=1

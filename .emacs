@@ -55,6 +55,7 @@
 (setq auto-mode-alist (cons  '("\\.iv\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.dv\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist (cons  '("\\.vh\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist (cons  '("\\.vpart\\'" . verilog-mode) auto-mode-alist))
 
 ;; Any files in verilog mode should have their keywords colorized 
 (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
@@ -66,8 +67,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
+ '(ansi-color-names-vector
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(case-fold-search t)
+ '(column-number-mode t)
  '(current-language-environment "Latin-1")
  '(custom-enabled-themes (quote (tango)))
  '(default-input-method "latin-1-prefix")
@@ -78,10 +81,10 @@
  '(show-paren-mode t nil (paren))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(vc-make-backup-files t)
- '(vhdl-electric-mode nil)
  '(verilog-auto-newline nil)
- '(visual-line-mode nil)
- '(vhdl-standard (quote (93 nil))))
+ '(vhdl-electric-mode nil)
+ '(vhdl-standard (quote (93 nil)))
+ '(visual-line-mode nil t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
