@@ -279,3 +279,11 @@ export NO_AT_BRIDGE=1
 
 # bug fix for Quartus on Ubuntu? Nope.
 export CURLOPT_NOSIGNAL=1
+
+# JDK 8.0_92
+#  PATH=/opt/java/jdk1.8.0_92/bin:${PATH}
+# JDK 8.0_91
+PATH=/usr/local/jdk1.8.0_91/bin:${PATH}
+# netbeans
+PATH=/usr/local/netbeans-8.1/bin:${PATH}
+
