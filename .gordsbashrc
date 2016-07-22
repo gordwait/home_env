@@ -2,14 +2,61 @@
 echo "hi from .gordsbashrc"
 
 ################################################################################
+# This expects your windows install of emacs has been either mounted or cygwin softlinked to /emacs.
+
 if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
-    echo "Cygin flavour"
+    echo "Cygin flavour NT-6.1"
     # pick up windows emacs
     if [ -d "/emacs/bin" ] ; then
 	PATH=/emacs/bin:${PATH}
     fi
 
+    function e() { 
+	/emacs/bin/runemacs "$@" &
+    }
+
 #    alias e=runemacs
+    export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+
+    inbox(){
+	runemacs c:/Users/gwait/Documents/inbox.txt
+    }
+
+    proj(){
+	runemacs c:/Users/gwait/Documents/projects.txt
+    }
+
+    next(){
+	runemacs c:/Users/gwait/Documents/NextActions.txt
+    }
+
+    someday(){
+	runemacs c:/Users/gwait/Documents/SomedayMaybe.txt
+    }
+
+    ref(){
+	runemacs c:/Users/gwait/Documents/reference.txt
+    }
+
+    ttd(){
+	runemacs c:/Users/gwait/Documents/NextActions.txt
+    }
+
+    ncs() {
+	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
+    }
+
+################################################################################
+elif [ "$(uname)" == "CYGWIN_NT-10.0" ]; then
+    echo "Cygin flavour NT 10"
+    # pick up windows emacs
+    if [ -d "/emacs/bin" ] ; then
+	PATH=/emacs/bin:${PATH}
+    fi
+
+    function e() { 
+	/emacs/bin/runemacs "$@" &
+    }
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
@@ -45,7 +92,9 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
     echo "Linux flavour"
 
-#    alias e=emacs
+ 	function e() { 
+ 	    /usr/bin/emacs "$@" &
+ 	}
 
     inbox(){
 	e ~/Documents/inbox.txt
@@ -190,21 +239,21 @@ fi
 
 source ~/.persistent_variables
 
-case $MACHTYPE in
-    i686-pc-cygwin)
-	function e() { 
-	    /emacs/bin/runemacs "$@" &
-	}
-	export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
-	;;
-    *)
-	function e() { 
-	    /usr/bin/emacs "$@" &
-	}
-	# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-	export ALTERNATE_EDITOR=emacs EDITOR=emacs VISUAL=emacs
-	;;
-esac
+# case $MACHTYPE in
+#     i686-pc-cygwin)
+# 	function e() { 
+# 	    /emacs/bin/runemacs "$@" &
+# 	}
+# 	export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+# 	;;
+#     *)
+# 	function e() { 
+# 	    /usr/bin/emacs "$@" &
+# 	}
+# 	# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+# 	export ALTERNATE_EDITOR=emacs EDITOR=emacs VISUAL=emacs
+# 	;;
+# esac
 
 alias nios="/cygdrive/c/altera/10.1/nios2eds/Nios\ II\ Command\ Shell.bat"
 
