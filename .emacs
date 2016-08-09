@@ -79,6 +79,7 @@
  '(line-move-visual nil)
  '(printer-name "prn1:")
  '(save-place t nil (saveplace))
+ '(save-place-mode t)
  '(show-paren-mode t nil (paren))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(vc-make-backup-files t)

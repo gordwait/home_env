@@ -120,22 +120,22 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	e ~/Documents/NextActions.txt
     }
 
-    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    # source $QUARTUS_ROOTDIR/adm/qenv.sh
-    # export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-    # export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-    # bug fix for Quartus on Ubuntu? Nope.
-    # export CURLOPT_NOSIGNAL=1
 
-    # Debussy (Novas) stufff
+    # Debussy (Novas) stufff 
     export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
-    
-    export DEBUSSYDIR=/tools/debussy200807
+    export NOVAS_LICENSE_FILE=/tools/licenses/lic.debussy
+   
+#    export DEBUSSYDIR=/tools/debussy200807
+    export DEBUSSYDIR=/tools/debussy_201101
+
+    # track glitches in NC Verilog
+    export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
 
     # Cadence stuff
-    export NC
-    export CADENCE=/tools/cadenceINCISIV102_USR2
-    export CADENCE=/tools/cadenceINCISIV102_USR2
+   export NC
+#    export CADENCE=/tools/cadenceINCISIV102_USR2
+    export CADENCE=/tools/cadenceIUS8.2.021
+    
     export CDS_LIC_FILE=/tools/licenses/lic.cadence
     export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
     export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
@@ -156,25 +156,35 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     #PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
     #export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
 
-    export OFFICE_SEL=VDC
-    # track glitches in NC Verilog
-    export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
-
-
-    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-#    export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    # source $QUARTUS_ROOTDIR/adm/qenv.sh
+    # export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+    # export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
     # bug fix for Quartus on Ubuntu? Nope.
     # export CURLOPT_NOSIGNAL=1
 
-# temporarily stop this so I can install stuff.
-#    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
-#    source $QUARTUS_ROOTDIR/adm/qenv.sh
+    # temporarily stop this so I can install stuff.
+    #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    #    source $QUARTUS_ROOTDIR/adm/qenv.sh
 
     # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
     # export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
     # source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+
+#    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+#    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+#    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+#    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+
+    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/16.0/quartus
+    export QSYS_ROOTDIR=/tools/altera/altera_lite/16.0/quartus/sopc_builder/bin
+    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/16.0/hld"
+    source /tools/altera/altera_lite/16.0/quartus/adm/qenv.sh
+
+# bug fix for Quartus on Ubuntu? Nope.
+export CURLOPT_NOSIGNAL=1
+
+    export OFFICE_SEL=VDC
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
@@ -327,8 +337,6 @@ lst(){
 # x11 remote noise about dbus errors. Shut up please:
 export NO_AT_BRIDGE=1
 
-# bug fix for Quartus on Ubuntu? Nope.
-export CURLOPT_NOSIGNAL=1
 
 # JDK 8.0_92
 #  PATH=/opt/java/jdk1.8.0_92/bin:${PATH}
