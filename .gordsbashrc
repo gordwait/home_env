@@ -134,18 +134,18 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Cadence stuff
    export NC
 #    export CADENCE=/tools/cadenceINCISIV102_USR2
+#    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+#    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+#    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+#    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+
     export CADENCE=/tools/cadenceIUS8.2.021
-    
-    export CDS_LIC_FILE=/tools/licenses/lic.cadence
     export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
-    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
-    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-
-    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
-
-    export PATH=$CADENCE/tools.lnx86/bin:$PATH
-    export PATH=$DEBUSSYDIR/bin:$PATH
+    export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog
+    export CDS_LIC_FILE=/tools/licenses/lic.cadence
+    export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX
+    export PATH=$CADENCE/tools.lnx86/bin:${PATH}
+    export PATH=$DEBUSSYDIR/bin:${PATH}
 
     # older tools: 13.xx
     # Altera:
@@ -175,11 +175,15 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
 #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
 #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    export ALTERA_DIR=/tools/altera/altera_lite/16.0
 
-    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/16.0/quartus
-    export QSYS_ROOTDIR=/tools/altera/altera_lite/16.0/quartus/sopc_builder/bin
-    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/16.0/hld"
-    source /tools/altera/altera_lite/16.0/quartus/adm/qenv.sh
+    export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+    export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+    export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+    source $ALTERA_DIR/quartus/adm/qenv.sh
+
+# add Altera edition Modelsim to the path:
+    PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
 
 # bug fix for Quartus on Ubuntu? Nope.
 export CURLOPT_NOSIGNAL=1
@@ -349,3 +353,4 @@ PATH=/usr/local/netbeans-8.1/bin:${PATH}
 # Spyglass tool (Synopsys Lint thing)
 export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
 PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
+export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
