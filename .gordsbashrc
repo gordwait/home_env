@@ -15,7 +15,7 @@ if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
 	/emacs/bin/runemacs "$@" &
     }
 
-#    alias e=runemacs
+    #    alias e=runemacs
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
@@ -46,7 +46,7 @@ if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
 	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
     }
 
-################################################################################
+    ################################################################################
 elif [ "$(uname)" == "CYGWIN_NT-10.0" ]; then
     echo "Cygin flavour NT 10"
     # pick up windows emacs
@@ -87,15 +87,19 @@ elif [ "$(uname)" == "CYGWIN_NT-10.0" ]; then
 	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
     }
 
-################################################################################
+    ################################################################################
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Do something under GNU/Linux platform
     echo "Linux flavour"
 
- 	function e() { 
- 	    /usr/bin/emacs "$@" &
- 	}
+    function e() { 
+ 	/usr/bin/emacs "$@" &
+    }
 
+    export EDITOR=emacs
+    export VISUAL=emacs
+    export ALTERNATE_EDITOR=emacs
+    
     inbox(){
 	e ~/Documents/inbox.txt
     }
@@ -124,20 +128,20 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # Debussy (Novas) stufff 
     export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
     export NOVAS_LICENSE_FILE=/tools/licenses/lic.debussy
-   
-#    export DEBUSSYDIR=/tools/debussy200807
+    
+    #    export DEBUSSYDIR=/tools/debussy200807
     export DEBUSSYDIR=/tools/debussy_201101
 
     # track glitches in NC Verilog
     export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
 
     # Cadence stuff
-   export NC
-#    export CADENCE=/tools/cadenceINCISIV102_USR2
-#    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
-#    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-#    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-#    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+    export NC
+    #    export CADENCE=/tools/cadenceINCISIV102_USR2
+    #    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+    #    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+    #    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    #    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
 
     export CADENCE=/tools/cadenceIUS8.2.021
     export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
@@ -171,10 +175,10 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     # export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
     # source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
 
-#    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-#    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-#    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-#    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    #    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+    #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
     export ALTERA_DIR=/tools/altera/altera_lite/16.0
 
     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
@@ -182,11 +186,11 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
     source $ALTERA_DIR/quartus/adm/qenv.sh
 
-# add Altera edition Modelsim to the path:
+    # add Altera edition Modelsim to the path:
     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
 
-# bug fix for Quartus on Ubuntu? Nope.
-export CURLOPT_NOSIGNAL=1
+    # bug fix for Quartus on Ubuntu? Nope.
+    export CURLOPT_NOSIGNAL=1
 
     export OFFICE_SEL=VDC
 
@@ -238,7 +242,7 @@ source ~/.persistent_variables
 
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
-  PATH=${HOME}/bin:${PATH}
+    PATH=${HOME}/bin:${PATH}
 fi
 
 # Set MANPATH so it includes users' private man if it exists
