@@ -288,9 +288,15 @@ alias cypress="ssh gwait@cypress -Y"
 
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
+alias fpga='cd $FPGADIR'
 
 setworkdir(){
     export WORKDIR=$PWD
+    save_my_variables
+}
+
+setfpgadir(){
+    export FPGADIR=$PWD
     save_my_variables
 }
 
@@ -304,6 +310,7 @@ setsrcdir(){
 
 save_my_variables() {
     echo "export WORKDIR=$WORKDIR" > ~/.persistent_variables
+    echo "export FPGADIR=$FPGADIR" > ~/.persistent_variables
     echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
     echo "export V4DIR=$V4DIR" >> ~/.persistent_variables
     echo "export V5DIR=$V5DIR" >> ~/.persistent_variables
