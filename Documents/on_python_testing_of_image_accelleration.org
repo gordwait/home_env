@@ -1,0 +1,7 @@
+What is the idea?
+Build up the image core in python, so it can be tested on a linux host?
+Then have the python version also generate C and or Verilog code to rerun the same tests on hardware..
+
+Now, do I warp the verilog/C test code into something more like the python opencv function calls? That would be the cleanest, no?
+
+What are the low level hardware functions?

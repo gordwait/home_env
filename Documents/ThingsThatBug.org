@@ -1,0 +1,49 @@
+Things that make me crazy.
+
+* Using `include to add verilog files to a simulation (or a build) instead of using the _normal_ method of a list of source files to compile.
+This makes it very hard to know what files are being used in a project, because these `includes are squirrelled all over in many .v files, as opposed to an organized Makefile, or an FPGA build file. Not good.
+
+* Including files from random places, not in with the actual project area.
+This makes it hard to impossible to have a portable project folder that can be checked into version control tools, or archived properly.
+
+* Having more than one Verilog module per file. See #1
+
+* Clever but unreadable Verilog source code
+Find those long and or chains from the Scaler as an example
+
+* No consistency in test hardware. 
+Every one of the Splitter/Scanner board is slightly different, forcing
+unique FPGA and test code builds for each one. More thought should be
+put into maintaining consistency. This alone cost a couple man weeks
+of time, since we didn't realize the LVDS lanes had been swapped
+around on only one of the Splitter variations.
+A little bit of effort on building up a test ecosystem would save a lot of time and hair pulling. 
+
+* Projects that don't use any version control
+People need to stop using a bunch of haphazardly named folders as
+a replacement for version control.  Multiple copies of folders and
+source files make it very difficult for others to figure out what is
+actually being used in a project.
+
+* Multiple copies of source files in the same folder
+This is from the habit of using multiple folders as a "version
+control" method.  Example - one FPGA folder with two or more
+Altera/Xilinx project files in it. Which one is the current project
+file?
+
+* Convoluted methods of accessing a network build machine. 
+Signing into and through two separate linux machines to get to an (obsolete) computer (Spanish) to run the tools. 
+Why? Computers are cheap. Put a fast linux machine on every Asic designers desktop. 
+That leads to:
+
+* Randomly disjointed PC network
+Multiple accounts on various machines, some can see the full network,
+others can't. It's a mess, and it wastes time. 
+
+* Pointing out ways to improve just gets blank stares or "that's how we've always done it". 
+Yeah. So? It's disfunctional, and wastes time and money. Assume each
+Engineer's time costs the company $100 per hour.
+
+* Building on a network drive is slow.
+People should have ssd drives on their local desktops and build there. 
+Stop building in /projects . Get used to using version control and learn that working model. 

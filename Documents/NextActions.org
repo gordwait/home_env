@@ -1,0 +1,14 @@
+* List of projects I'm on:
+ * Coho/Hud current design
+ * Coho/Hud Gentex Demo (Rev 2.0 Hud + YUV core, old register map)
+ * Host Interface bug fix, and pass info to Jimmy when done (endian bug in SPI still there)
+ * Maintain PatGen
+ ** Move it to PatGenCheck GIT repo and "normalize"
+ * Linux admin
+ ** Update/Patch linux boxes
+ * Look into network password scheme to replace the YP system 
+ 
+* Skunkworks?
+ * Get uCLinux running on Nios,
+ * Use that as the base for the test generation including SPI/I2C commands
+ 
