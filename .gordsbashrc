@@ -60,27 +60,27 @@ elif [ "$(uname)" == "CYGWIN_NT-10.0" ]; then
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
-	runemacs c:/Users/gwait/Documents/inbox.txt
+	runemacs c:/Users/gwait/Documents/inbox.org
     }
 
     proj(){
-	runemacs c:/Users/gwait/Documents/projects.txt
+	runemacs c:/Users/gwait/Documents/projects.org
     }
 
     next(){
-	runemacs c:/Users/gwait/Documents/NextActions.txt
+	runemacs c:/Users/gwait/Documents/NextActions.org
     }
 
     someday(){
-	runemacs c:/Users/gwait/Documents/SomedayMaybe.txt
+	runemacs c:/Users/gwait/Documents/SomedayMaybe.org
     }
 
     ref(){
-	runemacs c:/Users/gwait/Documents/reference.txt
+	runemacs c:/Users/gwait/Documents/reference.org
     }
 
     ttd(){
-	runemacs c:/Users/gwait/Documents/NextActions.txt
+	runemacs c:/Users/gwait/Documents/NextActions.org
     }
 
     ncs() {
@@ -101,27 +101,27 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     export ALTERNATE_EDITOR=emacs
     
     inbox(){
-	e ~/Documents/inbox.txt
+	e ~/Documents/inbox.org
     }
 
     proj(){
-	e ~/Documents/projects.txt
+	e ~/Documents/projects.org
     }
 
     next(){
-	e ~/Documents/NextActions.txt
+	e ~/Documents/NextActions.org
     }
 
     someday(){
-	e ~/Documents/SomedayMaybe.txt
+	e ~/Documents/SomedayMaybe.org
     }
 
     ref(){
-	e ~/Documents/reference.txt
+	e ~/Documents/reference.org
     }
 
     ttd(){
-	e ~/Documents/NextActions.txt
+	e ~/Documents/NextActions.org
     }
 
 
