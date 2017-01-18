@@ -1,6 +1,27 @@
+ * Work out the frequency ratio restrictions of SPI(and I2C) relative to the reference clock. 
+ * Fill in _ALL_ the registers in the register test routines.
+ * Review I2C, how did I implement the endian switching in I2C again?
+ * Why does HUDDemo need a manual reset? Startup reset not working?
+ * Check Host Interface documentation, let Jimmy know about status
+ * Finish current tests on HUD, let Jimmy know host interface change is done
+ * Add more fctests to hud
+ * finish trying to make 640x480 YUV tests run. 
+ * continue to clean up patgen. 
+ * Too many plls? 
+ * Why does updating the pll model break the design?
+ * Short plan to move all servers into the server room
+ * Write up idea to build a linux desktop (red hat variant - yuck) as a template for asic designers to use.
+ * Network password scheme for linux
+ * DNS server?
+ * Continue to document the patgencheck.
+  * Which module controls the operating video settings?
+ * run and update python tests for HUD on FPGA (now that burst mode is changed)
+
+* List linux servers and tasks, plan to delist the unused/obsolete ones
 * List of projects I'm on:
  * Coho/Hud current design
  * Coho/Hud Gentex Demo (Rev 2.0 Hud + YUV core, old register map)
+ ** Includes it's own local copy of the patgen code. Grr... Lets fix that? Make the YUV an option?
  * Host Interface bug fix, and pass info to Jimmy when done (endian bug in SPI still there)
  * Maintain PatGen
  ** Move it to PatGenCheck GIT repo and "normalize"
@@ -11,4 +32,12 @@
 * Skunkworks?
  * Get uCLinux running on Nios,
  * Use that as the base for the test generation including SPI/I2C commands
- 
+ * Things that bug me.
+ * Sort out how to better manage eclipse projects along with git. 
+ * Bugzilla or other simple bug tracker for hardware
+
+
+
+* Done:
+ * Monthly report
+ * merge in Eric Lin's updates to the pattern generator

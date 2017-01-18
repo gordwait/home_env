@@ -9,7 +9,7 @@ This makes it hard to impossible to have a portable project folder that can be c
 * Having more than one Verilog module per file. See #1
 
 * Clever but unreadable Verilog source code
-Find those long and or chains from the Scaler as an example
+Find those long "and or" chains from the Scaler as an example
 
 * No consistency in test hardware. 
 Every one of the Splitter/Scanner board is slightly different, forcing

@@ -182,7 +182,7 @@
 ;; Org mode games
 ;; (font-lock-add-keywords 'org-mode
 ;;                         '(("^ +\\([-*]\\) "
-;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "�"))))))
+;;                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) ""))))))
 
 ;; (require 'org-bullets)
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -205,3 +205,41 @@
 ;;                           `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
 ;;                           `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
 ;;                           `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
+
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)                 ; optional
+
+;; set comment mode for synopsys constraints files (.sdc)
+;; tcl is close enough for sdc files.
+(setq auto-mode-alist (cons '("\\.sdc" . tcl-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.qsf" . tcl-mode) auto-mode-alist))
+
+;; (defvar sdc-mode-syntax-table nil "Syntax table for `sdc-mode' .")
+
+;; (setq sdc-mode-syntax-table
+;;       (let ( (synTable (make-syntax-table)))
+;;         ;; python style comment: “# …”
+;;         (modify-syntax-entry ?# "<" synTable)
+;;         (modify-syntax-entry ?\n ">" synTable)
+;;         synTable))
+
+;; (define-derived-mode sdc-mode prog-mode "sdc"
+;;   "sdc-mode is a major mode for editing language sdc."
+
+;;   (setq font-lock-defaults (list nil nil))
+
+;;   (set-syntax-table sdc-mode-syntax-table)
+;;   ;; actually no need, because our syntax table name is “sdc-mode” + “-syntax-table”, so define-derived-mode will find it and set it
+;;   )
