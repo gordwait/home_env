@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "hi from .gordsbashrc"
-
+echo "run asic_tools(enter) if you need them"
 ################################################################################
 # This expects your windows install of emacs has been either mounted or cygwin softlinked to /emacs.
 
@@ -124,7 +124,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	e ~/Documents/NextActions.org
     }
 
-
+    asic_tools() {
+        
     # Debussy (Novas) stufff 
     export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
     export NOVAS_LICENSE_FILE=/tools/licenses/lic.debussy
@@ -204,6 +205,41 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 
     export OFFICE_SEL=VDC
 
+# New Xilinx tools on Win7 Epson:
+
+# 
+# if [ -d "${HOME}/bin" ] ; then
+#   PATH=${HOME}/bin:${PATH}
+# fi
+# VIVADO_LOC=/Xilinx/Vivado/2013.3
+# VIVADO_HLS_LOC=/Xilinx/Vivado_HLS/2013.3
+# PATH=$VIVADO_LOC/bin:$VIVADO_LOC/.xinstall/bin/nt64:$VIVADO_LOC/ids_lite/ISElib2/nt64:$VIVADO_LOC/ids_lite/EDK/gnuwin/bin:$VIVADO_HLS_LOC/bin:${PATH}
+# XIL_PAR_DESIGN_CHECK_VERBOSE=3
+
+# working PCIe master: (use this normally)
+# if [ -e /opt/Xilinx/Vivado/2013.3/settings64.sh ] ; then
+#    source /opt/Xilinx/Vivado/2013.3/settings64.sh
+# fi
+
+# new tools. lets see..
+# if [ -e /opt/Xilinx/Vivado/2014.4/settings64.sh ] ; then
+#    source /opt/Xilinx/Vivado/2014.4/settings64.sh
+# fi
+
+# if [ -e /opt/Xilinx/14.7/ISE_DS/settings64.sh ] ; then
+#     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
+# fi
+
+# x11 remote noise about dbus errors. Shut up please:
+export NO_AT_BRIDGE=1
+# Spyglass tool (Synopsys Lint thing)
+export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
+PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
+export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
+
+
+    }
+
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
     # 101 is my windows desktop via hummingbird.
@@ -214,7 +250,8 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     xhost +union
     xhost +spanish
     xhost +long
-
+    xhost +willows
+    
 fi
 
 # base-files version 3.7-1
@@ -295,6 +332,7 @@ alias mrbean="ssh gwait@mrbean -Y"
 alias spanish="ssh gwait@172.22.196.39 -Y"
 alias long="ssh gwait@long -Y"
 alias cypress="ssh gwait@cypress -Y"
+alias willows="ssh gwait@willows -Y"
 
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
@@ -331,33 +369,6 @@ lst(){
 }
 
 
-# New Xilinx tools on Win7 Epson:
-
-# 
-# if [ -d "${HOME}/bin" ] ; then
-#   PATH=${HOME}/bin:${PATH}
-# fi
-# VIVADO_LOC=/Xilinx/Vivado/2013.3
-# VIVADO_HLS_LOC=/Xilinx/Vivado_HLS/2013.3
-# PATH=$VIVADO_LOC/bin:$VIVADO_LOC/.xinstall/bin/nt64:$VIVADO_LOC/ids_lite/ISElib2/nt64:$VIVADO_LOC/ids_lite/EDK/gnuwin/bin:$VIVADO_HLS_LOC/bin:${PATH}
-# XIL_PAR_DESIGN_CHECK_VERBOSE=3
-
-# working PCIe master: (use this normally)
-# if [ -e /opt/Xilinx/Vivado/2013.3/settings64.sh ] ; then
-#    source /opt/Xilinx/Vivado/2013.3/settings64.sh
-# fi
-
-# new tools. lets see..
-# if [ -e /opt/Xilinx/Vivado/2014.4/settings64.sh ] ; then
-#    source /opt/Xilinx/Vivado/2014.4/settings64.sh
-# fi
-
-# if [ -e /opt/Xilinx/14.7/ISE_DS/settings64.sh ] ; then
-#     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
-# fi
-
-# x11 remote noise about dbus errors. Shut up please:
-export NO_AT_BRIDGE=1
 
 
 # JDK 8.0_92
@@ -367,11 +378,6 @@ PATH=/usr/local/jdk1.8.0_91/bin:${PATH}
 # netbeans
 PATH=/usr/local/netbeans-8.1/bin:${PATH}
 
-
-# Spyglass tool (Synopsys Lint thing)
-export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
-PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
-export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
 
 # graphing git:
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
