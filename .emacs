@@ -96,6 +96,7 @@
  '(global-font-lock-mode t nil (font-lock))
  '(indent-tabs-mode nil)
  '(line-move-visual nil)
+ '(package-selected-packages (quote (use-package)))
  '(printer-name "prn1:")
  '(save-place-mode t nil (saveplace))
  '(show-paren-mode t nil (paren))

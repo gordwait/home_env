@@ -191,7 +191,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
     #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
     export ALTERA_DIR=/tools/altera/altera_lite/16.0
-
     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
@@ -239,6 +238,18 @@ export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
 
 
     }
+
+    altera13() {
+    # older tools: 13.xx
+    # Altera:
+    export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
+    source /opt/Altera/QuartusII/quartus/adm/qenv.sh
+    # to build encrypted file on spanish (you mean union?)
+    export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
+    PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
+    export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
+    }
+    
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
