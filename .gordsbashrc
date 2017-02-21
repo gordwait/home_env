@@ -190,19 +190,32 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
     #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
     #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
-    export ALTERA_DIR=/tools/altera/altera_lite/16.0
+    #     export ALTERAOCLSDKROOT="/opt/altera/altera_lite/15.1/hld"
 
-    export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
-    export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
-    export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
-    source $ALTERA_DIR/quartus/adm/qenv.sh
+# # altera 16.0 lite:
+#     export ALTERA_DIR=/tools/altera/altera_lite/16.0
+#     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+#     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+#     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+#     source $ALTERA_DIR/quartus/adm/qenv.sh
+#     # add Altera edition Modelsim to the path:
+#     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+#     export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
 
-    # add Altera edition Modelsim to the path:
-    PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+# altera/intel 16.1 lite:
+     export ALTERA_DIR=/tools/altera/intelFPGA_lite/16.1
+     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+     source $ALTERA_DIR/quartus/adm/qenv.sh
+     # add Altera edition Modelsim to the path:
+     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+     export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
 
     # bug fix for Quartus on Ubuntu? Nope.
-    export CURLOPT_NOSIGNAL=1
+#    export CURLOPT_NOSIGNAL=1
 
+# for some Seiko Makefiles and Cadence tools:
     export OFFICE_SEL=VDC
 
 # New Xilinx tools on Win7 Epson:
@@ -321,7 +334,7 @@ source ~/.persistent_variables
 # 	;;
 # esac
 
-alias nios="/cygdrive/c/altera/10.1/nios2eds/Nios\ II\ Command\ Shell.bat"
+#alias nios="/cygdrive/c/altera/10.1/nios2eds/Nios\ II\ Command\ Shell.bat"
 
 alias h=history
 alias OK="source ~/.gordsbashrc"
