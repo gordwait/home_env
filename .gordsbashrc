@@ -137,28 +137,28 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
 
     # Cadence stuff
+    # this looks like junk:
     export NC
-    #    export CADENCE=/tools/cadenceINCISIV102_USR2
-    #    export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
-    #    export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-    #    alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-    #    alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
-    #    export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-    
+
+# something wrong with this next block:
+    # export CADENCE=/tools/cadenceINCISIV102_USR2
+    # export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+    # export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+    # alias v='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    # alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    # alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+    # export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+# end of bad block.     
+
+# this works ok so far:
+#    export CADENCE=/tools/cadenceIUS8.2.021
 #    export CADENCE=/tools/cadenceINCISIV102_USR2
-    export CADENCE=/tools/cadenceIUS8.2.021
+    export CADENCE=/tools/cadencetest
+    export CDS_INST_DIR=${CADENCE}
     export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
     export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog
     export CDS_LIC_FILE=/tools/licenses/lic.cadence
-# nope:
-#    export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX64
-
-# yeup:
-#    export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX
-
-    # nope. Needs command line options too?
     export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX/boot
-
     export PATH=$CADENCE/tools.lnx86/bin:${PATH}
     export PATH=$DEBUSSYDIR/bin:${PATH}
 
@@ -190,7 +190,6 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
     #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
     #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
-    #     export ALTERAOCLSDKROOT="/opt/altera/altera_lite/15.1/hld"
 
 # # altera 16.0 lite:
 #     export ALTERA_DIR=/tools/altera/altera_lite/16.0
@@ -213,7 +212,7 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
      export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
 
     # bug fix for Quartus on Ubuntu? Nope.
-#    export CURLOPT_NOSIGNAL=1
+    export CURLOPT_NOSIGNAL=1
 
 # for some Seiko Makefiles and Cadence tools:
     export OFFICE_SEL=VDC
@@ -250,8 +249,20 @@ export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
 PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
 export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
 
-
     }
+
+    altera13() {
+        # older tools: 13.xx
+        # Altera:
+        export ALTERA_DIR=/tools/altera/quartusv13
+        export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+        export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+        export ALTERAOCLSDKROOT=$ALTERA_DIR/hld
+#        source $ALTERA_DIR/quartus/adm/qenv.sh
+        # to build encrypted file on spanish (you mean union?)
+        PATH=/tools/altera/quartusv13/quartus/bin:$PATH
+    }
+  
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
@@ -347,12 +358,17 @@ alias long="ssh gwait@long -Y"
 alias cypress="ssh gwait@cypress -Y"
 alias willows="ssh gwait@willows -Y"
 
+alias work2='cd $WORKDIR2'
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
 alias fpga='cd $FPGADIR'
 
 setworkdir(){
     export WORKDIR=$PWD
+    save_my_variables
+}
+setworkdir2(){
+    export WORKDIR2=$PWD
     save_my_variables
 }
 
@@ -370,7 +386,8 @@ setsrcdir(){
 # deletes and creates a new copy every time:
 
 save_my_variables() {
-    echo "export WORKDIR=$WORKDIR" > ~/.persistent_variables
+    echo "export WORKDIR2=$WORKDIR2" > ~/.persistent_variables
+    echo "export WORKDIR=$WORKDIR" >> ~/.persistent_variables
     echo "export FPGADIR=$FPGADIR" >> ~/.persistent_variables
     echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
 }
@@ -380,9 +397,6 @@ export LS_OPTIONS="-F"
 lst(){
     ls -altF $* | head -n 35
 }
-
-
-
 
 # JDK 8.0_92
 #  PATH=/opt/java/jdk1.8.0_92/bin:${PATH}
