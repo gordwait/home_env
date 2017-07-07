@@ -96,13 +96,13 @@
  '(global-font-lock-mode t nil (font-lock))
  '(indent-tabs-mode nil)
  '(line-move-visual nil)
- '(package-selected-packages (quote (use-package)))
+ '(package-selected-packages (quote (csv-mode ac-octave matlab-mode use-package)))
  '(printer-name "prn1:")
  '(save-place-mode t nil (saveplace))
  '(show-paren-mode t nil (paren))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
  '(vc-make-backup-files t)
- '(verilog-align-ifelse nil)
+ '(verilog-align-ifelse t)
  '(verilog-auto-lineup (quote all))
  '(verilog-auto-newline nil)
  '(vhdl-electric-mode nil)
@@ -264,3 +264,24 @@
 ;;   (set-syntax-table sdc-mode-syntax-table)
 ;;   ;; actually no need, because our syntax table name is “sdc-mode” + “-syntax-table”, so define-derived-mode will find it and set it
 ;;   )
+
+;; (autoload 'octave-mode "octave-mod" nil t)
+;; (setq auto-mode-alist
+;;       (cons '("\\.m$" . octave-mode) auto-mode-alist))
+;; (add-hook 'octave-mode-hook
+;;           (lambda ()
+;;             (abbrev-mode 1)
+;;             (auto-fill-mode 1)
+;;             (if (eq window-system 'x)
+;;                 (font-lock-mode 1))))
+
+(require 'ac-octave)
+(defun ac-octave-mode-setup ()
+  (setq ac-sources '(ac-complete-octave)))
+(add-hook 'octave-mode-hook
+          '(lambda () (ac-octave-mode-setup)))
+
+(setq auto-mode-alist
+      (cons
+       '("\\.m$" . octave-mode)
+       auto-mode-alist))
