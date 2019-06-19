@@ -454,7 +454,7 @@ save_my_variables() {
 
 export LS_OPTIONS="-F"
 
-alias ls='/usr/bin/ls $LS_OPTIONS'
+alias ls='ls $LS_OPTIONS'
 
 lst(){
     ls -altF $* | head -n 35
