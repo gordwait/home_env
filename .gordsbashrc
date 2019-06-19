@@ -343,8 +343,6 @@ fi
 #   INFOPATH=${HOME}/info:${INFOPATH}
 # fi
 
-source ~/.persistent_variables
-
 # case $MACHTYPE in
 #     i686-pc-cygwin)
 # 	function e() { 
