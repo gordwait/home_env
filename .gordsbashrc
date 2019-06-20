@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "hi from .gordsbashrc"
-echo "run asic_tools(enter) if you need them"
+# echo "run asic_tools(enter) if you need them"
 ################################################################################
 # This expects your windows install of emacs has been either mounted or cygwin softlinked to /emacs.
 
@@ -15,35 +15,40 @@ if [ "$(uname)" == "CYGWIN_NT-6.1" ]; then
 	/emacs/bin/runemacs "$@" &
     }
 
-    #    alias e=runemacs
-    export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
+    export ALTERNATE_EDITOR=runemacs
+    export EDITOR=emacsclient
+    export VISUAL=emacsclient
 
-    inbox(){
-	runemacs c:/Users/gwait/Documents/inbox.org
+    function inbox() {
+        /emacs/bin/runemacs /cygdrive/c/Users/gwait/Documents/inbox.org
     }
 
-    proj(){
-	runemacs c:/Users/gwait/Documents/projects.org
+    function inbox(){
+	runemacs /cygdrive/c/Users/gwait/Documents/inbox.org
+    }
+
+    function proj() {
+	runemacs /cygdrive/c/Users/gwait/Documents/projects.org
     }
 
     next(){
-	runemacs c:/Users/gwait/Documents/NextActions.org
+	runemacs /cygdrive/c/Users/gwait/Documents/NextActions.org
     }
 
     someday(){
-	runemacs c:/Users/gwait/Documents/SomedayMaybe.org
+	runemacs /cygdrive/c/Users/gwait/Documents/SomedayMaybe.org
     }
 
     ref(){
-	runemacs c:/Users/gwait/Documents/reference.org
+	runemacs /cygdrive/c/Users/gwait/Documents/reference.org
     }
 
     ttd(){
-	runemacs c:/Users/gwait/Documents/NextActions.org
+	runemacs /cygdrive/c/Users/gwait/Documents/NextActions.org
     }
 
     ncs() {
-	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
+	"/cygdrive/c/altera/91/nios2eds/Nios II Command Shell.bat"
     }
 
     ################################################################################
@@ -60,31 +65,31 @@ elif [ "$(uname)" == "CYGWIN_NT-10.0" ]; then
     export ALTERNATE_EDITOR=runemacs EDITOR=emacsclient VISUAL=emacsclient
 
     inbox(){
-	runemacs c:/Users/gwait/Documents/inbox.org
+	runemacs /cygdrive/c/Users/gwait/Documents/inbox.org
     }
 
     proj(){
-	runemacs c:/Users/gwait/Documents/projects.org
+	runemacs /cygdrive/c/Users/gwait/Documents/projects.org
     }
 
     next(){
-	runemacs c:/Users/gwait/Documents/NextActions.org
+	runemacs /cygdrive/c/Users/gwait/Documents/NextActions.org
     }
 
     someday(){
-	runemacs c:/Users/gwait/Documents/SomedayMaybe.org
+	runemacs /cygdrive/c/Users/gwait/Documents/SomedayMaybe.org
     }
 
     ref(){
-	runemacs c:/Users/gwait/Documents/reference.org
+	runemacs /cygdrive/c/Users/gwait/Documents/reference.org
     }
 
     ttd(){
-	runemacs c:/Users/gwait/Documents/NextActions.org
+	runemacs /cygdrive/c/Users/gwait/Documents/NextActions.org
     }
 
     ncs() {
-	"c:/altera/91/nios2eds/Nios II Command Shell.bat"
+	"/cygdrive/c/altera/91/nios2eds/Nios II Command Shell.bat"
     }
 
     ################################################################################
@@ -124,132 +129,137 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	e ~/Documents/NextActions.org
     }
 
-    asic_tools() {
+    # function asic_tools() {
         
-    # Debussy (Novas) stufff 
-    export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
-    export NOVAS_LICENSE_FILE=/tools/licenses/lic.debussy
-    
-    #    export DEBUSSYDIR=/tools/debussy200807
-    export DEBUSSYDIR=/tools/debussy_201101
+    #     # # Debussy (Novas) stufff 
+    #     # export LM_LICENSE_FILE=/tools/licenses/lic.cadence:/tools/licenses/lic.debussy:27020@icclic5:27020@icclic6
+    #     # export NOVAS_LICENSE_FILE=/tools/licenses/lic.debussy
+        
+    #     # #    export DEBUSSYDIR=/tools/debussy200807
+    #     # export DEBUSSYDIR=/tools/debussy_201101
 
-    # track glitches in NC Verilog
-    export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
+    #     # # track glitches in NC Verilog
+    #     # export NOVAS_FSDB_ENV_MAX_GLITCH_NUM=0
 
-    # Cadence stuff
-    # this looks like junk:
-    export NC
+    #     # # Cadence stuff
+    #     # # this looks like junk:
+    #     # export NC
 
-# something wrong with this next block:
-    # export CADENCE=/tools/cadenceINCISIV102_USR2
-    # export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
-    # export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-    # alias v='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-    # alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
-    # alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
-    # export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
-# end of bad block.     
+    #     # something wrong with this next block:
+    #     # export CADENCE=/tools/cadenceINCISIV102_USR2
+    #     # export XL_LD=${CADENCE}/tools.lnx86/verilog/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/xl_loadpli1
+    #     # export NC_LD=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+    #     # alias v='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    #     # alias nc='export LD_LIBRARY_PATH=${NC_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog'
+    #     # alias xl='export LD_LIBRARY_PATH=${XL_LD}; export VERILOG=${CADENCE}/tools.lnx86/bin/verilog'
+    #     # export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/nc_xl/LINUX/nc_loadpli1
+    #     # end of bad block.     
 
-# this works ok so far:
-#    export CADENCE=/tools/cadenceIUS8.2.021
-#    export CADENCE=/tools/cadenceINCISIV102_USR2
-    export CADENCE=/tools/cadencetest
-    export CDS_INST_DIR=${CADENCE}
-    export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
-    export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog
-    export CDS_LIC_FILE=/tools/licenses/lic.cadence
-    export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX/boot
-    export PATH=$CADENCE/tools.lnx86/bin:${PATH}
-    export PATH=$DEBUSSYDIR/bin:${PATH}
+    #     # this works ok so far:
+    #     #    export CADENCE=/tools/cadenceIUS8.2.021
+    #     #    export CADENCE=/tools/cadenceINCISIV102_USR2
+    #     # export CADENCE=/tools/cadencetest
+    #     # export CDS_INST_DIR=${CADENCE}
+    #     # export ncvlog=${CADENCE}/tools.lnx86/bin/ncvlog
+    #     # export VERILOG=${CADENCE}/tools.lnx86/bin/ncverilog
+    #     # export CDS_LIC_FILE=/tools/licenses/lic.cadence
+    #     # export LD_LIBRARY_PATH=${CADENCE}/tools.lnx86/inca/pli:${CADENCE}/tools.lnx86/lib:${LD_LIBRARY_PATH}:${DEBUSSYDIR}/share/PLI/IUS/LINUX/boot
+    #     # export PATH=$CADENCE/tools.lnx86/bin:${PATH}
+    #     # export PATH=$DEBUSSYDIR/bin:${PATH}
 
-    # older tools: 13.xx
-    # Altera:
-    #export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
-    #source /opt/Altera/QuartusII/quartus/adm/qenv.sh
-    # to build encrypted file on spanish
-    #export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
-    #PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
-    #export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
+    #     # older tools: 13.xx
+    #     # Altera:
+    #     #export QUARTUS_ROOTDIR=/opt/Altera/QuartusII/quartus
+    #     #source /opt/Altera/QuartusII/quartus/adm/qenv.sh
+    #     # to build encrypted file on spanish
+    #     #export ALTERAOCLSDKROOT="/opt/Altera/QuartusII/hld"
+    #     #PATH="/opt/Altera/QuartusII/quartus/bin:$PATH"
+    #     #export QSYS_ROOTDIR="/opt/Altera/QuartusII/quartus/sopc_builder/bin"
 
-    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    # source $QUARTUS_ROOTDIR/adm/qenv.sh
-    # export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
-    # export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-    # bug fix for Quartus on Ubuntu? Nope.
-    # export CURLOPT_NOSIGNAL=1
+    #     # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    #     # source $QUARTUS_ROOTDIR/adm/qenv.sh
+    #     # export QSYS_ROOTDIR="/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin"
+    #     # export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    #     # bug fix for Quartus on Ubuntu? Nope.
+    #     # export CURLOPT_NOSIGNAL=1
 
-    # temporarily stop this so I can install stuff.
-    #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
-    #    source $QUARTUS_ROOTDIR/adm/qenv.sh
+    #     # temporarily stop this so I can install stuff.
+    #     #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    #     #    source $QUARTUS_ROOTDIR/adm/qenv.sh
 
-    # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    # export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-    # source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    #     # export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    #     # export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+    #     # source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
 
-    #    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
-    #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
-    #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
-    #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
+    #     #    export QUARTUS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus
+    #     #    export QSYS_ROOTDIR=/tools/altera/altera_lite/15.1/quartus/sopc_builder/bin
+    #     #    export ALTERAOCLSDKROOT="/tools/altera/altera_lite/15.1/hld"
+    #     #    source /tools/altera/altera_lite/15.1/quartus/adm/qenv.sh
 
-# # altera 16.0 lite:
-#     export ALTERA_DIR=/tools/altera/altera_lite/16.0
-#     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
-#     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
-#     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
-#     source $ALTERA_DIR/quartus/adm/qenv.sh
-#     # add Altera edition Modelsim to the path:
-#     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
-#     export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
+    #     # # altera 16.0 lite:
+    #     #     export ALTERA_DIR=/tools/altera/altera_lite/16.0
+    #     #     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+    #     #     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+    #     #     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+    #     #     source $ALTERA_DIR/quartus/adm/qenv.sh
+    #     #     # add Altera edition Modelsim to the path:
+    #     #     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+    #     #     export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
 
-# altera/intel 16.1 lite:
-     export ALTERA_DIR=/tools/altera/intelFPGA_lite/16.1
-     export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
-     export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
-     export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
-     source $ALTERA_DIR/quartus/adm/qenv.sh
-     # add Altera edition Modelsim to the path:
-     PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
-     export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
+    #     # # altera/intel 16.1 lite: (at epson)
+    #     #      export ALTERA_DIR=/tools/altera/intelFPGA_lite/16.1
+    #     #      export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+    #     #      export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+    #     #      export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+    #     #      source $ALTERA_DIR/quartus/adm/qenv.sh
+    #     #      # add Altera edition Modelsim to the path:
+    #     #      PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+    #     #      export QSYS_ROOTDIR="/tools/altera/intelFPGA_lite/16.1/quartus/sopc_builder/bin"
 
-    # bug fix for Quartus on Ubuntu? Nope.
-    export CURLOPT_NOSIGNAL=1
 
-# for some Seiko Makefiles and Cadence tools:
-    export OFFICE_SEL=VDC
+    #     # stealing from Nios Shell:
+        
 
-# New Xilinx tools on Win7 Epson:
 
-# 
-# if [ -d "${HOME}/bin" ] ; then
-#   PATH=${HOME}/bin:${PATH}
-# fi
-# VIVADO_LOC=/Xilinx/Vivado/2013.3
-# VIVADO_HLS_LOC=/Xilinx/Vivado_HLS/2013.3
-# PATH=$VIVADO_LOC/bin:$VIVADO_LOC/.xinstall/bin/nt64:$VIVADO_LOC/ids_lite/ISElib2/nt64:$VIVADO_LOC/ids_lite/EDK/gnuwin/bin:$VIVADO_HLS_LOC/bin:${PATH}
-# XIL_PAR_DESIGN_CHECK_VERBOSE=3
+    #     # bug fix for Quartus on Ubuntu? Nope.
+    #     #    export CURLOPT_NOSIGNAL=1
 
-# working PCIe master: (use this normally)
-# if [ -e /opt/Xilinx/Vivado/2013.3/settings64.sh ] ; then
-#    source /opt/Xilinx/Vivado/2013.3/settings64.sh
-# fi
+    #     # for some Seiko Makefiles and Cadence tools:
+    #     #    export OFFICE_SEL=VDC
 
-# new tools. lets see..
-# if [ -e /opt/Xilinx/Vivado/2014.4/settings64.sh ] ; then
-#    source /opt/Xilinx/Vivado/2014.4/settings64.sh
-# fi
+    #     # New Xilinx tools on Win7 Epson:
 
-# if [ -e /opt/Xilinx/14.7/ISE_DS/settings64.sh ] ; then
-#     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
-# fi
+    #     # 
+    #     # if [ -d "${HOME}/bin" ] ; then
+    #     #   PATH=${HOME}/bin:${PATH}
+    #     # fi
+    #     # VIVADO_LOC=/Xilinx/Vivado/2013.3
+    #     # VIVADO_HLS_LOC=/Xilinx/Vivado_HLS/2013.3
+    #     # PATH=$VIVADO_LOC/bin:$VIVADO_LOC/.xinstall/bin/nt64:$VIVADO_LOC/ids_lite/ISElib2/nt64:$VIVADO_LOC/ids_lite/EDK/gnuwin/bin:$VIVADO_HLS_LOC/bin:${PATH}
+    #     # XIL_PAR_DESIGN_CHECK_VERBOSE=3
 
-# x11 remote noise about dbus errors. Shut up please:
-export NO_AT_BRIDGE=1
-# Spyglass tool (Synopsys Lint thing)
-export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
-PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
-export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
+    #     # working PCIe master: (use this normally)
+    #     # if [ -e /opt/Xilinx/Vivado/2013.3/settings64.sh ] ; then
+    #     #    source /opt/Xilinx/Vivado/2013.3/settings64.sh
+    #     # fi
 
-    }
+    #     # new tools. lets see..
+    #     # if [ -e /opt/Xilinx/Vivado/2014.4/settings64.sh ] ; then
+    #     #    source /opt/Xilinx/Vivado/2014.4/settings64.sh
+    #     # fi
+
+    #     # if [ -e /opt/Xilinx/14.7/ISE_DS/settings64.sh ] ; then
+    #     #     source /opt/Xilinx/14.7/ISE_DS/settings64.sh
+    #     # fi
+
+    #     # x11 remote noise about dbus errors. Shut up please:
+    #     # export NO_AT_BRIDGE=1
+    #     # # Spyglass tool (Synopsys Lint thing)
+    #     # export SPYGLASS_HOME=/tools/spyglass2015.12.6/Spyglass-5.6.0.6/SPYGLASS_HOME
+    #     # PATH=/tools/spyglass2015.12.6/SpyGlass-5.6.0.6/SPYGLASS_HOME/bin:${PATH}
+    #     # export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
+
+    # }
 
     altera13() {
         # older tools: 13.xx
@@ -258,27 +268,34 @@ export ATRENTA_LICENSE_FILE=27020@icclic5:27020@icclic6
         export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
         export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
         export ALTERAOCLSDKROOT=$ALTERA_DIR/hld
-#        source $ALTERA_DIR/quartus/adm/qenv.sh
+        #        source $ALTERA_DIR/quartus/adm/qenv.sh
         # to build encrypted file on spanish (you mean union?)
         PATH=/tools/altera/quartusv13/quartus/bin:$PATH
     }
-  
 
     # Local xwindow stuff
     # alias xme="export DISPLAY=172.22.196.148:0.0"
     # 101 is my windows desktop via hummingbird.
-    # alias xme="export DISPLAY=172.22.196.101:0.0"
-    alias xme="export DISPLAY=mrbean:0.0"
-    alias xvdc-nelson="export DISPLAY=172.22.196.101:0.0"
+    # # alias xme="export DISPLAY=172.22.196.101:0.0"
+    # alias xme="export DISPLAY=mrbean:0.0"
+    # alias xvdc-nelson="export DISPLAY=172.22.196.101:0.0"
 
-    xhost +union
-    xhost +spanish
-    xhost +long
-    xhost +willows
+    # xhost +union
+    # xhost +spanish
+    # xhost +long
+    # xhost +willows
     
 fi
 
-# base-files version 3.7-1
+# altera/intel 14.1:  linux only dude. Stuck with nios shell. Grr. Maybe not. Check nios shell path and env and just clone it here..
+#      export ALTERA_DIR=/altera/14.1
+#      export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+#      export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+#      export ALTERAOCLSDKROOT="$ALTERA_DIR/hld"
+# #     source $ALTERA_DIR/quartus/adm/qenv.sh
+#      # add Altera edition Modelsim to the path:
+#      PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+#      export QSYS_ROOTDIR="/altera/14.1/quartus/sopc_builder/bin"
 
 source ~/.persistent_variables
 
@@ -326,7 +343,6 @@ fi
 #   INFOPATH=${HOME}/info:${INFOPATH}
 # fi
 
-
 source ~/.persistent_variables
 
 # case $MACHTYPE in
@@ -351,24 +367,49 @@ alias h=history
 alias OK="source ~/.gordsbashrc"
 alias docs="cd ~/Documents"
 
-alias union="ssh gwait@172.22.196.13 -Y"
-alias mrbean="ssh gwait@mrbean -Y"
-alias spanish="ssh gwait@172.22.196.39 -Y"
-alias long="ssh gwait@long -Y"
-alias cypress="ssh gwait@cypress -Y"
-alias willows="ssh gwait@willows -Y"
+# alias union="ssh gwait@172.22.196.13 -Y"
+# alias mrbean="ssh gwait@mrbean -Y"
+# alias spanish="ssh gwait@172.22.196.39 -Y"
+# alias long="ssh gwait@long -Y"
+# alias cypress="ssh gwait@cypress -Y"
+# alias willows="ssh gwait@willows -Y"
 
+alias cc='cd $CCDIR'
+alias bsp='cd $BSPDIR'
+alias work3='cd $WORKDIR3'
 alias work2='cd $WORKDIR2'
 alias work='cd $WORKDIR'
 alias src='cd $SRCDIR'
 alias fpga='cd $FPGADIR'
+alias scripts='cd $SCRIPTSDIR'
+alias usb1='cd $USB1DIR'
+alias usb2='cd $USB2DIR'
 
 setworkdir(){
     export WORKDIR=$PWD
     save_my_variables
 }
+
+setccdir(){
+    export CCDIR=$PWD
+    save_my_variables
+}
+
+setbspdir(){
+    export BSPDIR=$PWD
+    save_my_variables
+}
+
+setscriptsdir(){
+    export SCRIPTSDIR=$PWD
+    save_my_variables
+}
 setworkdir2(){
     export WORKDIR2=$PWD
+    save_my_variables
+}
+setworkdir3(){
+    export WORKDIR3=$PWD
     save_my_variables
 }
 
@@ -382,17 +423,40 @@ setsrcdir(){
     save_my_variables
 }
 
+setusb1dir(){
+    export USB1DIR=$PWD
+    save_my_variables
+}
+
+setusb2dir(){
+    export USB2DIR=$PWD
+    save_my_variables
+}
+
+# saves away the variables to a start script for persistence:
+# deletes and creates a new copy every time:
+
+
 # saves away the variables to a start script for persistence:
 # deletes and creates a new copy every time:
 
 save_my_variables() {
-    echo "export WORKDIR2=$WORKDIR2" > ~/.persistent_variables
+    echo "export CCDIR=$CCDIR" >> ~/.persistent_variables
+    echo "export BSPDIR=$BSPDIR" >> ~/.persistent_variables
+    echo "export WORKDIR3=$WORKDIR3" > ~/.persistent_variables
+    echo "export WORKDIR2=$WORKDIR2" >> ~/.persistent_variables
     echo "export WORKDIR=$WORKDIR" >> ~/.persistent_variables
     echo "export FPGADIR=$FPGADIR" >> ~/.persistent_variables
+    echo "export BSPDIR=$BSPDIR" >> ~/.persistent_variables
     echo "export SRCDIR=$SRCDIR" >> ~/.persistent_variables
+    echo "export SCRIPTSDIR=$SCRIPTSDIR" >> ~/.persistent_variables
+    echo "export USB1DIR=$USB1DIR" >> ~/.persistent_variables
+    echo "export USB2DIR=$USB2DIR" >> ~/.persistent_variables
 }
 
 export LS_OPTIONS="-F"
+
+alias ls='/usr/bin/ls $LS_OPTIONS'
 
 lst(){
     ls -altF $* | head -n 35
@@ -400,12 +464,32 @@ lst(){
 
 # JDK 8.0_92
 #  PATH=/opt/java/jdk1.8.0_92/bin:${PATH}
-# JDK 8.0_91
-PATH=/usr/local/jdk1.8.0_91/bin:${PATH}
-# netbeans
-PATH=/usr/local/netbeans-8.1/bin:${PATH}
-
+# # JDK 8.0_91
+# PATH=/usr/local/jdk1.8.0_91/bin:${PATH}
+# # netbeans
+# PATH=/usr/local/netbeans-8.1/bin:${PATH}
 
 # graphing git:
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 
+# # altera/intel 14.1: cygwin
+# echo "here.."
+# export ALTERA_DIR=/cygdrive/c/altera/14.1
+# echo ALTERA_DIR is $ALTERA_DIR
+# export QUARTUS_ROOTDIR=$ALTERA_DIR/quartus
+# export QSYS_ROOTDIR=$ALTERA_DIR/quartus/sopc_builder/bin
+# export ALTERAOCLSDKROOT=$ALTERA_DIR/hld
+# export SOPC_KIT_NIOS2=$ALTERA_DIR/nios2eds
+# export _QUARTUS_BIN=$ALTERA_DIR/nios2eds/../quartus/bin64
+# PATH=$ALTERA_DIR/quartus/sopc_builder/bin:${PATH}
+# PATH=$ALTERA_DIR/quartus/bin64:${PATH}
+# PATH=$ALTERA_DIR/quartus/bin32:${PATH}
+# PATH=$ALTERA_DIR/nios2eds/sdk2/bin:${PATH}
+# PATH=$ALTERA_DIR/nios2eds/bin:${PATH}
+# PATH=$ALTERA_DIR/nios2eds/bin/gnu/H-x86_64-mingw32/bin:${PATH}
+# PATH=$ALTERA_DIR/modelsim_ase/win32aloem:${PATH}
+# PATH=$ALTERA_DIR/quartus/bin64/:${PATH}
+# PATH=$ALTERA_DIR/modelsim_ase/bin:${PATH}
+# export QSYS_ROOTDIR="/altera/14.1/quartus/sopc_builder/bin"
+# export MGLS_LICENSE_FILE="/altera/license.dat"
+# export LM_LICENSE_FILE="/altera/license.dat"
