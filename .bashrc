@@ -114,3 +114,7 @@ if ! shopt -oq posix; then
 fi
 
 source ~/.gordsbashrc
+
+export ALTERAOCLSDKROOT="/home/gordwait/altera/14.1/hld"
+
+export QSYS_ROOTDIR="/home/gordwait/altera/14.1/quartus/sopc_builder/bin"

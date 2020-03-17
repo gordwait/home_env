@@ -29,3 +29,7 @@ fi
 #   source "${HOME}/.gordsbashrc"
 # fi
 
+
+export ALTERAOCLSDKROOT="/home/gordwait/altera/14.1/hld"
+
+export QSYS_ROOTDIR="/home/gordwait/altera/14.1/quartus/sopc_builder/bin"
